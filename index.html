@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-X8M7T669YV"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-X8M7T669YV');
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Generative Omnimatte">
+  <title>LayerT2V: Interactive Multi-Object Trajectory Layering for Video Generation</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./assets/css/bulma.min.css">
+  <link rel="stylesheet" href="./assets/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./assets/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./assets/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.css">
+
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./assets/css/index.css">
+  <!-- <link rel="stylesheet" href="./assets/css/app.css"> -->
+  <!-- <link rel="icon" href="./assets/images/favicon.svg"> -->
+  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.3/clipboard.min.js"></script>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./assets/js/fontawesome.all.min.js"></script>
+  <script src="./assets/js/bulma-carousel.min.js"></script>
+  <script src="./assets/js/bulma-slider.min.js"></script>
+  <script src="./assets/js/app.js"></script>
+  <script src="./assets/js/synced_video_selector.js"></script>
+</head>
+<body onresize="reload();">
+
+<section class="hero" style="padding-bottom: 0; margin-bottom: 0;">
+  <div class="hero-body" style="padding-bottom: 0; margin-bottom: 0;">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title" style="font-size: 32pt;"><span style="font-weight: normal;">LayerT2V: Interactive Multi-Object</span>
+            <br><span style="font-weight:normal">Trajectory Layering for Video Generation</span></h1>
+          <div class="is-size-5 publication-authors" id="div-row-authors">
+			      <span class="author-block">
+              <a href="https://kr-panghu.github.io/">Kangrui Cen</a><sup>1</sup>&nbsp&nbsp</span>
+			      <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=i46wdAUAAAAJ&hl=zh-CN">Baixuan Zhao</a><sup>1</sup>&nbsp&nbsp</span>
+			      <span class="author-block">
+              <a href="https://synbol.github.io/">Yi Xin</a><sup>2</sup>&nbsp&nbsp</span>
+			      <span class="author-block">
+              <a href="https://scholar.google.com/citations?hl=en&user=_Cwn43wAAAAJ">Siqi Luo</a><sup>1</sup>&nbsp&nbsp</span>
+			      <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=E6zbSYgAAAAJ&hl=en">Guangtao Zhai</a><sup>1</sup>&nbsp&nbsp</span>
+            <span class="author-block">
+              <a href="https://jhc.sjtu.edu.cn/~xiaohongliu/">Xiaohong Liu</a><sup>1</sup>&nbsp&nbsp</span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Shanghai Jiao Tong University &nbsp&nbsp </span>
+            <span class="author-block"><sup>2</sup>Nanjing University &nbsp&nbsp </span>
+          </div>
+
+          <!-- <h2 class="title is-4 publication-title" style="margin-top: 20px; margin-bottom: 16px;">Online Gallery of SJTU Bachelor Thesis</h1> -->
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block"></span>
+                <a href="https://github.com/Kr-Panghu/LayerT2V-public/"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+                <a href="https://github.com/Kr-Panghu/LayerT2V-public/"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                </a>
+                <a href="https://github.com/Kr-Panghu/LayerT2V-public/"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>PDF</span>
+                </a>
+                <a href="#BibTeX"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fa fa-book"></i>
+                  </span>
+                  <span>BibTex</span>
+                </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="sec-mctrl-pipeline" class="hero is-light" style="background-color: #ffffff;">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <img src="./assets/images/layert2v-logo.png"
+           alt="layert2v logo"
+           style="max-width: 50%; height: auto; display: block; margin: 0 auto 30px;">
+      <!-- <h2 class="title is-3" style="margin-bottom: 30px;">🚀 Direction 2: Motion Control</h2> -->
+      <img src="./assets/mctrl/pipeline/layer-gen.png"
+           alt="CIPT2V Pipeline Diagram"
+           style="max-width: 90%; height: auto; display: block; margin: 0 auto 30px;">
+      <div class="content has-text-justified" style="max-width: 1150px; margin: 0 auto;">
+        <p style="font-size: 1.2rem;">
+          We have observed that existing motion control methods in T2V either lack
+          support for multi-object motion scenes or experience severe performance degradation when
+          object trajectories intersect, primarily due to the semantic conflicts in colliding regions. To
+          address this, we introduce LayerT2V, the first approach for generating video by compositing
+          background and foreground objects layer by layer. This layered generation enables flexible integration of multiple independent elements within a video, positioning each element
+          on a distinct “layer” and thus facilitating coherent multi-object synthesis while enhancing
+          control over the generation process.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<section id='sec:comparison-multiobj' class="hero is-small">
+  <div class="container"> 
+    
+    <div class="container-fluid">
+      <h2 class="title has-text-centered is-3">Comparisons on Multi-Object Motion Control</h2>
+      
+      <div class="row py-5 mt-5 bg-dark" id="div-video-comp-remove">
+          <div class="col-2"></div>
+          <div class="col-md-8">
+              
+              <script>
+                  activeCompRmMethodPill = document.querySelector('.comprm-method-pill.active-pill');
+                  activeCompRmScenePill = document.querySelector('.comprm-scene-pill.active-pill');
+                  activeCompRmModePill = document.querySelector('.comprm-mode-pill.active-pill');
+              </script>
+              <div class="has-text-centered text-center">
+                <div class="pill-row scene-pills">
+                  <span class="pill comprm-scene-pill active" data-value="two-geese" onclick="selectCompRmVideo(activeCompRmMethodPill, this, activeCompRmModePill)">
+                    <img class="thumbnail-img" src="assets/thumbnails/two-geese.png" width="64">
+                  </span>
+                  <span class="pill comprm-scene-pill" data-value="deer-bear-cabin" onclick="selectCompRmVideo(activeCompRmMethodPill, this, activeCompRmModePill)">
+                    <img class="thumbnail-img" src="assets/thumbnails/deer-bear-cabin.png" width="64">
+                  </span>
+                  <span class="pill comprm-scene-pill " data-value="deer-horse-grassland" onclick="selectCompRmVideo(activeCompRmMethodPill, this, activeCompRmModePill)">
+                    <img class="thumbnail-img" src="assets/thumbnails/deer-horse-grassland.png" width="64">
+                  </span>
+                  <span class="pill comprm-scene-pill " data-value="duck-stone" onclick="selectCompRmVideo(activeCompRmMethodPill, this, activeCompRmModePill)">
+                    <img class="thumbnail-img" src="assets/thumbnails/duck-stone.png" width="64">
+                  </span>
+                  <span class="pill comprm-scene-pill " data-value="jellyfish-carp" onclick="selectCompRmVideo(activeCompRmMethodPill, this, activeCompRmModePill)">
+                    <img class="thumbnail-img" src="assets/thumbnails/jellyfish-carp.png" width="64">
+                  </span>
+                  <span class="pill comprm-scene-pill " data-value="robot-corgi-beach" onclick="selectCompRmVideo(activeCompRmMethodPill, this, activeCompRmModePill)">
+                    <img class="thumbnail-img" src="assets/thumbnails/robot-corgi-beach.png" width="64">
+                  </span>
+                  <br/>
+                </div>
+                <br>
+                <div class="text-center" style="color: black; display: none;" id="comprm-method-pills">
+                  <div class="btn-group btn-group-sm">
+                      <span class="button is-normal comprm-method-pill" data-value="objectdrop" label="ObjectDrop [Winter et al. 2024]" id="btn-objectdrop"
+                          onclick="selectCompRmVideo(this, activeCompRmScenePill, activeCompRmModePill)">
+                          ObjectDrop
+                      </span>
+                      <span class="button is-normal comprm-method-pill" data-value="propainter" label="ProPainter [Zhou et al. 2023]" id="btn-propainter"
+                          onclick="selectCompRmVideo(this, activeCompRmScenePill, activeCompRmModePill)">
+                          ProPainter
+                      </span>
+                      <span class="button is-normal comprm-method-pill active" data-value="lumiere_inpainting" label="Lumiere-Inpainting <br> [Bar-Tal et al. 2024]" id="btn-lumiere"
+                          onclick="selectCompRmVideo(this, activeCompRmScenePill, activeCompRmModePill)">
+                          Lumiere Inpainting
+                      </span>
+                  </div>
+              </div>
+              <br>
+              <div class="text-center" style="color: black; display: none;" id="comprm-mode-pills">
+                <div class="btn-group btn-group-sm">
+                    <span class="button is-normal comprm-mode-pill active" data-value="bg"
+                        onclick="selectCompRmVideo(activeCompRmMethodPill, activeCompRmScenePill, this)">
+                        Background
+                    </span>
+                </div>
+              </div>
+              <div class="video-container">
+                  <video class="video" style="width: 1000px;" id="comprmVideo0" loop playsinline autoplay muted>
+                      <source src="assets/videos/comparisons-removal/two-geese-row.mp4" />
+                  </video>
+                  <div class="column">
+                      <div class="columns method-labels" style="position: relative; height: 30px; width: 1000px; margin: -20px auto 0 auto;">
+
+                          <div class="column method-label absolute-label" style="left: 0px;">
+                              MCtrl<sup class="ref-sup"><a href="#bib-mctrl">[1]</a></sup>
+                          </div>
+                          <div class="column method-label absolute-label" style="left: 250px;">
+                              Peek<sup class="ref-sup"><a href="#bib-peek">[2]</a></sup>
+                          </div>
+                          <div class="column method-label absolute-label" style="left: 500px;">
+                              Dav<sup class="ref-sup"><a href="#bib-dav">[3]</a></sup>
+                          </div>
+                          <div class="column method-label absolute-label" style="left: 750px;">
+                              Ours
+                          </div>
+
+                      </div>
+                  </div>
+              </div>
+
+              <script>
+                  activeCompRmMethodPill = document.querySelector('.comprm-method-pill.active-pill');
+                  activeCompRmScenePill = document.querySelector('.comprm-scene-pill.active-pill');
+                  activeCompRmModePill = document.querySelector('.comprm-mode-pill.active-pill');
+              </script>
+            </div>
+          </div>
+          
+          <div class="col-2"></div>
+      </div>
+    </div>
+    <div class="has-text-justified  text-description" style="max-width: 1150px; margin: 0 auto;">
+      <p>
+        Qualitative comparison on colliding object motion control with others. 
+        We compare our method against <a href="https://wzhouxiff.github.io/projects/MotionCtrl/">MotionCtrl</a>,
+        <a href="https://arxiv.org/html/2312.07509v1">Peekaboo</a>, and 
+        <a href="https://direct-a-video.github.io/">Direct-a-Video</a>.
+        Our method excels in handling cases involving more than one object with colliding motion. 
+        Furthermore, we take both static trajectory and moving trajectory into account and 
+        showcase that our model outperforms others.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section id="sec-extensive-blending" class="hero is-light" style="background-color: #ffffff;">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h2 class="title is-3" style="margin-bottom: 25px;">Extensive Blending</h2>
+
+      <div class="video-container" style="max-width: 1200px; margin: 0 auto;">
+        <video autoplay muted loop playsinline style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+          <source src="./assets/mctrl/video/extensive-blending.mp4" type="video/mp4">
+          您的浏览器不支持视频播放。
+        </video>
+      </div>
+
+      <div class="content has-text-justified" style="max-width: 1100px; margin: 0 auto;">
+        <p style="font-size: 1.2rem; margin-top: 20px;">
+          We present a case to show the ability of our model to handle multiple object generation iteratively. For convenience, we use arrows to replace bounding boxes.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<br>
+<br>
+
+
+<section id='sec:method' class="hero is-small" style="background-color: #ffffff;">
+  <div class="container"> 
+    
+    <div class="container-fluid">
+      <h2 class="title has-text-centered is-3">Method</h2>
+      <div class="has-text-justified  text-description" style="max-width: 1150px; margin: 0 auto;">
+        <p>We carefully design our layer-customized module to achieve our goal of handling multi-object scenario generation 
+          while preserving harmony and consistency between multiple layers. It has 3 critical components, (1) Guided Cross-Attention, 
+          (2) Oriented Attention-Sharing, (3) Attention-Isolation, and has 2 critical tricks, (4) Keyframe Amplification 
+          and (5) Post-Harmonization.</p>
+      </div>
+      <!-- <div id='subsec-method-overview' class="row py-5 mt-5 bg-dark">
+       <img src="assets/images/pipeline.svg" style="width: 100%;"/> 
+      </div> -->
+      <div id='subsec-trimask' class="row py-5 mt-5 bg-dark">
+        <!-- BEGIN TRIMASK -->
+        <script>
+            activeTrimaskMethodPill = document.querySelector('.trimask-method-pill.active-pill');
+            activeTrimaskScenePill = document.querySelector('.trimask-scene-pill.active-pill');
+            activeTrimaskModePill = document.querySelector('.trimask-mode-pill.active-pill');
+        </script>
+
+      <div id='subsec:train_data'  class="row py-5 mt-5 bg-dark">
+        <h2 class="title has-text-centered is-size-4">
+          Illustration of Proposed Methods
+        </h2>
+        
+        <!-- BEGIN TRAINING DATA -->
+          <script>
+              activeTrainDataMethodPill = document.querySelector('.traindata-method-pill.active-pill');
+              activeTrainDataScenePill = document.querySelector('.traindata-scene-pill.active-pill');
+              activeTrainDataModePill = document.querySelector('.traindata-mode-pill.active-pill');
+          </script>
+          <div class="has-text-centered text-center">
+            <div class="text-center" style="color: black;" id="traindata-method-pills">
+              <div class="btn-group btn-group-sm">
+                  <span class="button is-normal traindata-method-pill active" data-value="GuidedCrossAttn"
+                      onclick="selectTrainDataVideo(this, activeTrainDataScenePill, activeTrainDataModePill)">
+                      GuidedCrossAttn
+                  </span>
+                  <span class="button is-normal traindata-method-pill" data-value="OrientedAttnSharing"
+                      onclick="selectTrainDataVideo(this, activeTrainDataScenePill, activeTrainDataModePill)">
+                      OrientedAttnSharing
+                  </span>
+                  <span class="button is-normal traindata-method-pill" data-value="AttnIsolation"
+                      onclick="selectTrainDataVideo(this, activeTrainDataScenePill, activeTrainDataModePill)">
+                      AttnIsolation
+                  </span>
+                  <span class="button is-normal traindata-method-pill" data-value="KeyframeAmp"
+                      onclick="selectTrainDataVideo(this, activeTrainDataScenePill, activeTrainDataModePill)">
+                      KeyframeAmp
+                  </span>
+                  <span class="button is-normal traindata-method-pill" data-value="Post-Harmonization"
+                      onclick="selectTrainDataVideo(this, activeTrainDataScenePill, activeTrainDataModePill)">
+                      Post-Harmonization
+                  </span>
+              </div>
+          </div>
+          <br>
+          <div class="text-center" style="color: black; display: none;" id="traindata-mode-pills">
+            <div class="btn-group btn-group-sm">
+                <span class="button is-normal traindata-mode-pill active" data-value="none"
+                    onclick="selectTrainDataVideo(activeTrainDataMethodPill, activeTrainDataScenePill, this)">
+                    none
+                </span>
+            </div>
+          </div>
+          <div class="video-container">
+              <!-- <video class="video" id="traindataVideo0" loop playsinline autoplay muted>
+                  <source src="assets/videos/train_data/omnimatte.mp4" />
+              </video> -->
+              <!-- <img class="image" style="width: auto; height: 80%; max-height: 500px; display: inline-block;" id="traindataImage0" alt="Train Data Visualization"> -->
+              <img class="image" style="width: auto; height: 80%; max-height: 500px; display: inline-block;" id="traindataImage0" alt="Train Data Visualization" src="assets/videos/train_data/GuidedCrossAttn.png">
+              <div class="column">
+                <div class="columns">
+                  <div class="column has-text-centered method-label">
+                  </div>
+                </div>
+              </div>
+          </div>
+          <script>
+              activeTrainDataMethodPill = document.querySelector('.traindata-method-pill.active-pill');
+              activeTrainDataScenePill = document.querySelector('.traindata-scene-pill.active-pill');
+              activeTrainDataModePill = document.querySelector('.traindata-mode-pill.active-pill');
+
+              // 在页面加载后触发一次 selectTrainDataVideo 函数，以设置描述文字
+              // 确保 DOM 元素都已加载
+              document.addEventListener('DOMContentLoaded', function() {
+                  const defaultMethodPill = document.querySelector('.traindata-method-pill.active');
+                  if (defaultMethodPill) {
+                      selectTrainDataVideo(defaultMethodPill,
+                                          activeTrainDataScenePill, // 使用当前初始化的值
+                                          activeTrainDataModePill); // 使用当前初始化的值
+                  }
+              });
+          </script>
+        </div>
+        <!--END TRAINING DATA-->
+      </div>
+      <div class="has-text-justified" id="div-traindata-text-container" style="max-width: 1150px; margin: 0 auto;">
+        <p id="p-traindata-desc" class="has-text-justified  text-description">
+          <!-- We curate a training dataset of real and synthetic video examples from the following four categories: -->
+          <!-- <br><br> -->
+          
+          Spatial cross-attention plays an essential role in T2V generation, as it serves as the only pathway for the prompt to embed into the latent representations. Therefore, it is crucial to thoroughly investigate methods to steer spatial cross-attention towards our desired outcomes. Rather than using a linear additive mask, we employ a Gaussian function to smoothly construct an additive mask corresponding to the bbox area with an influence coefficient 𝜆, allowing it to guide without negatively disrupting the attention values, thereby preserving the quality of generated content.
+        </p>
+        <br>
+      </div>
+      <!-- <div class="row py-5 mt-5 bg-dark"> -->
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="sec-mask" class="hero is-light" style="background-color: #ffffff;">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h2 class="title is-3" style="margin-bottom: 25px;">Visualization of Alpha Mask</h2>
+      <img src="./assets/mctrl/pipeline/alpha-mask.png"
+           alt="alpha mask"
+           style="max-width: 80%; height: auto; display: block; margin: 0 auto 30px;">
+      <div class="content has-text-justified" style="max-width: 1100px; margin: 0 auto;">
+        <p style="font-size: 1.2rem;" style="max-width: 1150px; margin: 0 auto;">
+          To better illustrate the transparency relationships between multiple layers of objects, 
+          we visualize the alpha masks of each layer as well as the blended alpha mask 
+          of the foreground objects for one set of results.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="sec-layer-transplantation" class="hero is-light" style="background-color: #ffffff;">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h2 class="title is-3" style="margin-bottom: 25px;">Extension 1: Layer Transplantation</h2>
+
+      <div class="video-container" style="max-width: 1000px; margin: 0 auto;">
+        <video autoplay muted loop playsinline style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+          <source src="./assets/mctrl/video/transplantation.mp4" type="video/mp4">
+          您的浏览器不支持视频播放。
+        </video>
+      </div>
+
+      <div class="content has-text-justified" style="max-width: 1100px; margin: 0 auto;">
+        <p style="font-size: 1.2rem; margin-top: 20px;">
+          We have observed that generated layers, even when lacking specialized attributes like reflections, 
+          can offer significant practical value for transplantation to other videos. 
+          Moreover, the transparency of these generated layers allows for flexible scaling, repositioning, 
+          and seamless overlay onto diverse backgrounds.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="sec-layer-Interaction" class="hero is-light" style="background-color: #ffffff;">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h2 class="title is-3" style="margin-bottom: 25px;">Extension 2: Interaction between Foregrounds</h2>
+
+      <div class="video-container" style="max-width: 1000px; margin: 0 auto;">
+        <video autoplay muted loop playsinline style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+          <source src="./assets/mctrl/video/interaction.mp4" type="video/mp4">
+          您的浏览器不支持视频播放。
+        </video>
+      </div>
+
+      <div class="content has-text-justified" style="max-width: 1100px; margin: 0 auto;">
+        <p style="font-size: 1.2rem; margin-top: 20px;">
+          If interactions within the same depth are desired, this can be achieved by combining multiple objects into a group, which is as an extension of our method.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="sec:user-specified">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered ">
+      <div class="column">
+        <h2 class="title is-3">Acknowledgments</h2>
+        <div class="has-text-justified  text-description" style="max-width: 1150px; margin: 0 auto;">
+          <p>
+            We would like to greatly thank <a href="https://faculty.ucmerced.edu/mhyang/">Ming-Hsuan Yang</a> at University of California Merced and 
+            <a href="https://ckkelvinchan.github.io/">Kelvin C.K. Chan</a> at Google DeepMind for their insightful discussions and generous support.
+          </p>
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="references" class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-4 has-text-centered">References</h2>
+      <div class="content" style="max-width: 1150px; margin: 0 auto;">
+        <p id="bib-mctrl">
+          [1] WANG Z, YUAN Z, WANG X, et al. <strong>Motionctrl: A unified and flexible motion controller for video generation</strong>[C]//ACM SIGGRAPH 2024 Conference Papers. 2024: 1-11.
+        </p>
+        <p id="bib-peek">
+          [2] JAIN Y, NASERY A, VINEET V, et al. <strong>Peekaboo: Interactive video generation via masked- diffusion</strong>[C]//Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2024: 8079-8088.
+        </p>
+        <p id="bib-dav">
+          [3] YANG S, HOU L, HUANG H, et al. <strong>Direct-a-video: Customized video generation with user- directed camera movement and object motion</strong>[C]//SIGGRAPH ’24: ACM SIGGRAPH 2024 Conference Papers. 2024: 1-12.
+        </p>
+        </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content" style="max-width: 1150px; margin: 0 auto;">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@inproceedings{gen-omnimatte,
+    title={Generative omnimatte: Learning to decompose video into layers},
+    author={Lee, Yao-Chih and Lu, Erika and Rumbley, Sarah and Geyer, Michal and Huang, Jia-Bin and Dekel, Tali and Cole, Forrester},
+    booktitle={Proceedings of the Computer Vision and Pattern Recognition Conference},
+    year={2025}
+}</code></pre>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="content is-centered">
+        <p>
+          This template is borrowed from <a
+          href="https://github.com/nerfies/nerfies.github.io">nerfies</a>, 
+          <a href="https://reconfusion.github.io/">ReconFusion</a>, 
+          and <a href="https://gen-omnimatte.github.io/">Gen-Omnimatte</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
